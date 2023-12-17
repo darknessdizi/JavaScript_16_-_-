@@ -1,0 +1,142 @@
+:root {
+  --cell-size: 120px;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #f6f8f9;
+}
+
+.content {
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+a {
+  font-size: 2em;
+  text-decoration: none;
+  line-height: 4em;
+  padding: 5px;
+  border: 2px solid black;
+  background-color: aquamarine;
+}
+
+a:nth-child(1n + 2) {
+  margin-top: 15px;
+}
+
+a:hover {
+  background-color:chartreuse;
+}
+
+.card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.hole-game {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-column-gap: 2px;
+  grid-row-gap: 2px;
+}
+
+.hole {
+  width: var(--cell-size);
+  height: var(--cell-size);
+  background: gray;
+  border-radius: 50%;
+}
+
+.hole_has-mole {
+  background-image: url('../img/goblin.png');
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-color: gray;
+  cursor: url('../img/1.png') 15 15, pointer;
+}
+
+table {
+  font-size: 2em;
+  border-spacing: 10px;
+}
+
+tr:first-child {
+  background-color: aquamarine;
+}
+
+tr:first-child td:hover, button:hover {
+  background-color:chartreuse;
+}
+
+td {
+  border: 2px solid grey;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.sorted {
+  background-color: coral;
+}
+
+.btn-return {
+  margin-top: 2em;
+  font-size: 2em;
+  padding: 15px;
+  background-color: aquamarine;
+  border-radius: 50%;
+}
+
+.strike {
+  background-image: url('../img/5-4.png');
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  width: var(--cell-size);
+  height: var(--cell-size);
+}
+
+.popup {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  align-items: center;
+  justify-content: center;
+}
+
+.popup-active {
+  display: flex;
+}
+
+.popup-form {
+  background-color: lightgreen;
+  text-align: center;
+  font-size: 40px;
+  font-weight: 700;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 50px;
+}
+
+.btn-reset {
+  font-size: 1em;
+  background-color: rgb(222, 245, 118);
+  border-radius: 50%;
+  margin: 30px 60px 0px;
+}
