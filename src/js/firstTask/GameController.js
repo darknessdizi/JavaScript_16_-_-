@@ -5,6 +5,7 @@ export default class GameController {
   constructor(game) {
     this.game = game;
     this.gameState = new GameState();
+    this.step = 1000;
   }
 
   init() {
@@ -29,6 +30,7 @@ export default class GameController {
     const hasMole = this.game.cells[index].classList.value;
     if ((hasMole.includes('hole_has-mole')) && (this.gameState.statusClick)) {
       this.gameState.statusClick = false;
+      this.step -= 10;
       clearInterval(this.gameState.timer);
       this.game.addStrike(index);
       this.gameState.score += 1;
@@ -71,7 +73,7 @@ export default class GameController {
         clearInterval(this.gameState.timer);
         this.gameOver();
       }
-    }, 1000);
+    }, this.step);
   }
 
   nextStep() {
@@ -87,5 +89,6 @@ export default class GameController {
     this.gameState.hole.classList.remove("hole_has-mole");
     this.game.popup.classList.add('popup-active');
     this.game.spanResult.textContent = `Ваш результат: ${this.gameState.score}`;
+    this.step = 1000;
   }
 }

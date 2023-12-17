@@ -20,6 +20,14 @@ body {
   flex-direction: column;
 }
 
+.content-window {
+  background-color: rgb(65, 250, 59);
+  width: 400px;
+  padding: 10px;
+  border: 2px solid black;
+  border-radius: 5%;
+}
+
 a {
   font-size: 2em;
   text-decoration: none;
