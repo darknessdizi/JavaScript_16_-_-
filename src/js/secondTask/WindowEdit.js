@@ -1,12 +1,14 @@
 export default class WindowEdit {
   constructor() {
     this.conteiner = null;
+    this.form = null;
     this.input = null;
     this.divAllTask = null;
     this.divTaskPinned = null;
     this.returnListeners = [];
     this.submitListeners = [];
     this.inputListeners = [];
+    this.checkboxListeners = [];
   }
 
   _createMain() {
@@ -21,14 +23,17 @@ export default class WindowEdit {
     titleTask.textContent = 'TOP Task';
     mainDiv.append(titleTask);
 
-    const form = document.createElement('form');
-    form.addEventListener('submit', (event) => this.onSubmit(event));
-    mainDiv.append(form);
+    this.form = document.createElement('form');
+    this.form.classList.add('tasks__form');
+    this.form.addEventListener('submit', (event) => this.onSubmit(event));
+    mainDiv.append(this.form);
 
     this.input = document.createElement('input');
     this.input.setAttribute('type', 'text');
+    this.input.setAttribute('autofocus', '');
+    this.input.classList.add('tasks__form__input');
     this.input.addEventListener('input', (event) => this.onInput(event));
-    form.append(this.input);
+    this.form.append(this.input);
 
     const titlePinned = document.createElement('h3');
     titlePinned.textContent = 'Pinned:';
@@ -78,6 +83,7 @@ export default class WindowEdit {
   }
 
   onSubmit(event) {
+    // Обработчик события поля Form
     event.preventDefault();
     this.submitListeners.forEach((o) => o.call(null));
   }
@@ -88,6 +94,7 @@ export default class WindowEdit {
   }
 
   onInput(event) {
+    // Обработчик события поля Input
     event.preventDefault();
     this.inputListeners.forEach((o) => o.call(null));
   }
@@ -97,20 +104,65 @@ export default class WindowEdit {
     this.inputListeners.push(callback);
   }
 
-  createTask() {
+  onCheckbox(event) {
+    // Обработчик события поля задачи (input type=checkbox)
+    const task = event.target.previousSibling.textContent;
+    this.checkboxListeners.forEach((o) => o.call(null, task));
+  }
+
+  addCheckboxListener(callback) {
+    // Сохранение переданных callback поля Input (type=checkbox)
+    this.checkboxListeners.push(callback);
+  }
+
+  createTask(value, status) {
+    // Создает HTML блок для одной задачи
     const div = document.createElement('div');
     div.classList.add('task');
+
+    const span = document.createElement('span');
+    span.textContent = value;
+    // div.append(span);
+    const label = document.createElement('label');
+    div.append(label);
+
+    const input = document.createElement('input');
+    input.setAttribute('type', 'checkbox');
+    input.classList.add('task__checkbox');
+    if (status) {
+      input.setAttribute('checked', '');
+    }
+    input.addEventListener('change', (event) => this.onCheckbox(event));
+    label.append(span);
+    label.append(input);
     return div;
   }
 
   errorTask() {
+    // Выдает ошибку о пустом поле
     const div = document.createElement('div');
     div.classList.add('error');
     div.textContent = 'The field is empty!';
-    const form = this.conteiner.querySelector('form');
-    form.append(div);
-    setTimeout(() => {
-      div.remove();
-    }, 2000)
+    this.form.append(div);
+  }
+
+  drowTasks(array) {
+    // Отрисовывает список задач в поле All Task
+    this.divAllTask.innerHTML = '';
+    if (array.length === 0) {
+      this.divAllTask.textContent = 'No tasks found';
+    } else {
+      array.forEach((item) => this.divAllTask.append(item));
+    }
+  }
+
+  drowPinned(array) {
+    // Отрисовывает список задач в поле Pinned
+    this.divTaskPinned.innerHTML = '';
+    if (array.length === 0) {
+      this.divTaskPinned.textContent = 'No pinned tasks';
+    } else {
+      array.forEach((item) => this.divTaskPinned.append(item));
+    }
   }
 }

@@ -4,7 +4,7 @@
 
 body {
   margin: 0;
-  padding: 0;
+  padding: 10px;
   background-color: #f6f8f9;
 }
 
@@ -147,4 +147,71 @@ td {
   background-color: rgb(222, 245, 118);
   border-radius: 50%;
   margin: 30px 60px 0px;
+}
+
+.tasks__form {
+  display: flex;
+  flex-direction: column;
+}
+
+.tasks__form__input {
+  flex-grow: 1;
+  padding: 5px;
+}
+
+.error {
+  color: red;
+  font-size: 1em;
+  font-weight: 700;
+}
+
+label {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+
+  border: 1px solid black;
+  border-radius: 15px;
+  position: relative;
+}
+
+.task__checkbox::after {
+  content: '';
+  position: absolute;
+  display: inline-block;
+  vertical-align: middle;
+  width: 30px;
+  height: 30px;
+  background-image: url('../img/check.png');
+  background-size: 25px;
+  background-repeat: no-repeat;
+  background-position: center center;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  /* left: 0px; */
+}
+
+.task__checkbox:checked ~ .task__checkbox::after {
+  background-image: url('../img/check2.png');
+}
+
+.task__checkbox {
+  /* width: 30px; */
+  /* height: 30px; */
+  cursor: pointer;
+  /* margin-right: 15px; */
+  clip: rect(1px, 1px, 1px, 1px);
+  /* position: absolute; */
+  height: 1px;
+  width: 1px;
+  /* margin: 0px; */
+}
+
+span {
+  flex-grow: 1;
+  width: 90%;
+  padding: 10px 40px 10px 15px;
+  overflow-wrap: anywhere;
+  display: inline-block;
 }
