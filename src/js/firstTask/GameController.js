@@ -28,7 +28,7 @@ export default class GameController {
   onCellClick(index) {
     // Callback для события "click" в поле игры
     const hasMole = this.game.cells[index].classList.value;
-    if ((hasMole.includes("hole_has-mole")) && (this.gameState.statusClick)) {
+    if (hasMole.includes("hole_has-mole") && this.gameState.statusClick) {
       this.gameState.statusClick = false;
       this.step -= 10;
       clearInterval(this.gameState.timer);
@@ -63,7 +63,7 @@ export default class GameController {
   runInterval() {
     // Запуск интервала для непрерывных ходов unit
     this.gameState.timer = setInterval(() => {
-      this.gameState.count += 1
+      this.gameState.count += 1;
       console.log("Следующий гоблин", this.gameState.count);
       this.gameState.hole.classList.remove("hole_has-mole");
       this.nextIndex(this.game.cells);
