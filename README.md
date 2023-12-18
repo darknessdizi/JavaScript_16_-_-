@@ -1,5 +1,9 @@
 # Домашнее задание к занятию "3.Обработка событий"
 
+[![Build status](https://ci.appveyor.com/api/projects/status/u3n68xx8yfian3yf?svg=true)](https://ci.appveyor.com/project/darknessdizi/javascript-16-event-handling)
+
+**Ссылка на страницу: https://darknessdizi.github.io/JavaScript_16_event_handling/**
+
 Правила сдачи задания:
 
 1. **Важно**: в рамках этого ДЗ нужно использовать менеджер пакетов yarn (а значит, никакого `package-lock.json` в репозитории быть не должно)
