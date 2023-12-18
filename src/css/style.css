@@ -42,6 +42,10 @@ a:hover {
   border-radius: 50%;
 }
 
+button:hover {
+  background-color:chartreuse;
+}
+
 /* ------------ CSS для задачи 1: ------------ */
 :root {
   --cell-size: 120px;
@@ -179,3 +183,6 @@ span {
   padding: 10px 40px 10px 15px;
   overflow-wrap: anywhere;
 }
+
+/* ------------ CSS для задачи 3: ------------ */
+
