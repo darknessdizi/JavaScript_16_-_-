@@ -1,31 +1,8 @@
-:root {
-  --cell-size: 120px;
-}
-
+/* ------------ Общие параметры: ------------ */
 body {
   margin: 0;
   padding: 10px;
   background-color: #f6f8f9;
-}
-
-.content {
-  position: absolute;
-  left: 0;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-}
-
-.content-window {
-  background-color: rgb(59 250 239);
-  width: 400px;
-  padding: 10px;
-  border: 2px solid black;
-  border-radius: 5%;
 }
 
 a {
@@ -45,11 +22,29 @@ a:hover {
   background-color:chartreuse;
 }
 
-.card {
+.content {
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-wrap: wrap;
+  flex-direction: column;
+}
+
+.btn-return {
+  margin-top: 2em;
+  font-size: 2em;
+  padding: 15px;
+  background-color: aquamarine;
+  border-radius: 50%;
+}
+
+/* ------------ CSS для задачи 1: ------------ */
+:root {
+  --cell-size: 120px;
 }
 
 .hole-game {
@@ -73,37 +68,6 @@ a:hover {
   background-size: contain;
   background-color: gray;
   cursor: url('../img/1.png') 15 15, pointer;
-}
-
-table {
-  font-size: 2em;
-  border-spacing: 10px;
-}
-
-tr:first-child {
-  background-color: aquamarine;
-}
-
-tr:first-child td:hover, button:hover {
-  background-color:chartreuse;
-}
-
-td {
-  border: 2px solid grey;
-  padding-left: 20px;
-  padding-right: 20px;
-}
-
-.sorted {
-  background-color: coral;
-}
-
-.btn-return {
-  margin-top: 2em;
-  font-size: 2em;
-  padding: 15px;
-  background-color: aquamarine;
-  border-radius: 50%;
 }
 
 .strike {
@@ -147,6 +111,17 @@ td {
   background-color: rgb(222, 245, 118);
   border-radius: 50%;
   margin: 30px 60px 0px;
+}
+
+
+/* ------------ CSS для задачи 2: ------------ */
+.content-window {
+  background-color: rgb(59 250 239);
+  min-width: 300px;
+  max-width: 400px;
+  padding: 10px;
+  border: 2px solid black;
+  border-radius: 5%;
 }
 
 .tasks__form {
