@@ -15,25 +15,20 @@ export default class WindowController {
     this.edit.addCheckboxListener(this.onCheckbox.bind(this));
 
     this.showArrayPinned();
-
-    const arrayAllTasks = this.allTasks.filter((item) => {
-      return item.pinned ? false : true;
-    });
-    const arrayHtml = this.getArrayHtmlTasks(arrayAllTasks);
-    this.edit.drowTasks(arrayHtml);
+    this.showAllTasks();
   }
 
   onReturnClick() {
     // Нажали кнопку return (возврат в главное меню)
-    const body = document.querySelector('body');
-    body.innerHTML = '';
+    const body = document.querySelector("body");
+    body.innerHTML = "";
     const main = createLinks();
     body.append(main);
   }
 
   onSubmit() {
     // Обработка события формы Submit (Нажатие кнопки Enter)
-    if (this.edit.input.value === '') {
+    if (this.edit.input.value === "") {
       if (this.edit.form.children.length > 1) {
         return;
       }
@@ -41,16 +36,15 @@ export default class WindowController {
       return;
     }
 
-    const status = this.compareAllTask(this.edit.input.value);
+    const status = this.compareAllTasks(this.edit.input.value);
     if (status) {
       return;
     }
     const task = new Task(this.edit.input.value);
     this.allTasks.push(task);
 
-    const array = this.getArrayHtmlTasks(this.allTasks);
-    this.edit.drowTasks(array);
-    this.edit.input.value = '';
+    this.showAllTasks();
+    this.edit.input.value = "";
   }
 
   onInput() {
@@ -58,9 +52,9 @@ export default class WindowController {
     if (this.edit.form.children.length > 1) {
       this.edit.form.children[1].remove();
     }
-    const arrayFilter = this.getArrayFilter();
-    const array = this.getArrayHtmlTasks(arrayFilter);
-    this.edit.drowTasks(array);
+    const listFilteredTasks = this.getArrayFilterTasks();
+    const array = this.getArrayHtmlTasks(listFilteredTasks);
+    this.edit.drawTasks(array);
   }
 
   onCheckbox(text) {
@@ -73,9 +67,9 @@ export default class WindowController {
 
     this.showArrayPinned();
 
-    const arrayFilter = this.getArrayFilter();
-    const array = this.getArrayHtmlTasks(arrayFilter);
-    this.edit.drowTasks(array);
+    const listFilteredTasks = this.getArrayFilterTasks();
+    const array = this.getArrayHtmlTasks(listFilteredTasks);
+    this.edit.drawTasks(array);
   }
 
   getArrayHtmlTasks(arrayObject, status = false) {
@@ -88,7 +82,7 @@ export default class WindowController {
     return array;
   }
 
-  getArrayFilter() {
+  getArrayFilterTasks() {
     // Возвращает отфильтрованный список (без учета задач pinned)
     return this.allTasks.filter((item) => {
       if (item.pinned) {
@@ -104,10 +98,19 @@ export default class WindowController {
     // Отрисовывает Pinned задачи
     const arrayPinned = this.allTasks.filter((item) => item.pinned);
     let arrayHtml = this.getArrayHtmlTasks(arrayPinned, true);
-    this.edit.drowPinned(arrayHtml);
+    this.edit.drawPinned(arrayHtml);
   }
 
-  compareAllTask(value) {
+  showAllTasks() {
+    // Отрисовывает задачи поля All Tasks
+    const listFilteredTasks = this.allTasks.filter((item) => {
+      return item.pinned ? false : true;
+    });
+    const array = this.getArrayHtmlTasks(listFilteredTasks);
+    this.edit.drawTasks(array);
+  }
+
+  compareAllTasks(value) {
     // Проверка на дублирующиеся задачи (без учета регистра)
     const element = this.allTasks.find((item) => {
       const text = item.text.toLowerCase();

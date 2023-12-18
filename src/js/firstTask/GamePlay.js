@@ -23,7 +23,7 @@ export default class GamePlay {
       element.classList.add("hole");
       mainDiv.append(element);
 
-      element.addEventListener('click', (event) => this.onCellClick(event));
+      element.addEventListener("click", (event) => this.onCellClick(event));
       this.cells.push(element);
     }
     this._createButton(main);
@@ -33,11 +33,11 @@ export default class GamePlay {
 
   _createButton(mainBlock) {
     // Создаем кнопку возврата на главную страницу
-    const btn = document.createElement('button');
-    btn.textContent = 'Return';
-    btn.classList.add('btn-return');
+    const btn = document.createElement("button");
+    btn.textContent = "Return";
+    btn.classList.add("btn-return");
     mainBlock.append(btn);
-    btn.addEventListener('click', (event) => this.onReturnClick(event));
+    btn.addEventListener("click", (event) => this.onReturnClick(event));
   }
 
   onCellClick(event) {
@@ -84,7 +84,7 @@ export default class GamePlay {
 
   addStrike(index) {
     // Добавляет блок с фоном показывающий попадание
-    const strikeDiv = document.createElement('div');
+    const strikeDiv = document.createElement("div");
     strikeDiv.classList.add("strike");
     this.cells[index].append(strikeDiv);
   }
@@ -96,20 +96,20 @@ export default class GamePlay {
 
   createPopup() {
     // Создает popup для страницы
-    this.popup = document.createElement('div');
-    this.popup.classList.add('popup');
-    const div = document.createElement('div');
-    div.classList.add('popup-form');
-    div.textContent = 'Конец игры';
-    const span = document.createElement('span');
+    this.popup = document.createElement("div");
+    this.popup.classList.add("popup");
+    const div = document.createElement("div");
+    div.classList.add("popup-form");
+    div.textContent = "Конец игры";
+    const span = document.createElement("span");
     this.spanResult = span;
     div.append(span);
-    const btn = document.createElement('button');
-    btn.textContent = 'Reset';
-    btn.classList.add('btn-reset');
+    const btn = document.createElement("button");
+    btn.textContent = "Reset";
+    btn.classList.add("btn-reset");
     div.append(btn);
 
-    btn.addEventListener('click', (event) => this.onResetClick(event));
+    btn.addEventListener("click", (event) => this.onResetClick(event));
 
     this.popup.append(div);
   }

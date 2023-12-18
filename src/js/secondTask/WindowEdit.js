@@ -19,36 +19,36 @@ export default class WindowEdit {
     mainDiv.classList.add("content-window");
     main.append(mainDiv);
 
-    const titleTask = document.createElement('h3');
-    titleTask.textContent = 'TOP Task';
+    const titleTask = document.createElement("h3");
+    titleTask.textContent = "TOP Task";
     mainDiv.append(titleTask);
 
-    this.form = document.createElement('form');
-    this.form.classList.add('tasks__form');
-    this.form.addEventListener('submit', (event) => this.onSubmit(event));
+    this.form = document.createElement("form");
+    this.form.classList.add("tasks__form");
+    this.form.addEventListener("submit", (event) => this.onSubmit(event));
     mainDiv.append(this.form);
 
-    this.input = document.createElement('input');
-    this.input.setAttribute('type', 'text');
-    this.input.setAttribute('autofocus', '');
-    this.input.classList.add('tasks__form__input');
-    this.input.addEventListener('input', (event) => this.onInput(event));
+    this.input = document.createElement("input");
+    this.input.setAttribute("type", "text");
+    this.input.setAttribute("autofocus", "");
+    this.input.classList.add("tasks__form__input");
+    this.input.addEventListener("input", (event) => this.onInput(event));
     this.form.append(this.input);
 
-    const titlePinned = document.createElement('h3');
-    titlePinned.textContent = 'Pinned:';
+    const titlePinned = document.createElement("h3");
+    titlePinned.textContent = "Pinned:";
     mainDiv.append(titlePinned);
 
-    this.divTaskPinned = document.createElement('div');
-    this.divTaskPinned.classList.add('pinned');
+    this.divTaskPinned = document.createElement("div");
+    this.divTaskPinned.classList.add("pinned");
     mainDiv.append(this.divTaskPinned);
 
-    const titleAllTask = document.createElement('h3');
-    titleAllTask.textContent = 'All Task:';
+    const titleAllTask = document.createElement("h3");
+    titleAllTask.textContent = "All Task:";
     mainDiv.append(titleAllTask);
 
-    this.divAllTask = document.createElement('div');
-    this.divAllTask.classList.add('all__tasks');
+    this.divAllTask = document.createElement("div");
+    this.divAllTask.classList.add("all__tasks");
     mainDiv.append(this.divAllTask);
 
     this._createButton(main);
@@ -57,11 +57,11 @@ export default class WindowEdit {
 
   _createButton(mainBlock) {
     // Создаем кнопку возврата на главную страницу
-    const btn = document.createElement('button');
-    btn.textContent = 'Return';
-    btn.classList.add('btn-return');
+    const btn = document.createElement("button");
+    btn.textContent = "Return";
+    btn.classList.add("btn-return");
     mainBlock.append(btn);
-    btn.addEventListener('click', (event) => this.onReturnClick(event));
+    btn.addEventListener("click", (event) => this.onReturnClick(event));
   }
 
   addMain() {
@@ -106,7 +106,7 @@ export default class WindowEdit {
 
   onCheckbox(event) {
     // Обработчик события поля задачи (input type=checkbox)
-    const task = event.target.previousSibling.textContent;
+    const task = event.target.nextSibling.textContent;
     this.checkboxListeners.forEach((o) => o.call(null, task));
   }
 
@@ -117,50 +117,51 @@ export default class WindowEdit {
 
   createTask(value, status) {
     // Создает HTML блок для одной задачи
-    const div = document.createElement('div');
-    div.classList.add('task');
+    const div = document.createElement("div");
+    div.classList.add("task");
 
-    const span = document.createElement('span');
-    span.textContent = value;
-    // div.append(span);
-    const label = document.createElement('label');
+    const label = document.createElement("label");
     div.append(label);
 
-    const input = document.createElement('input');
-    input.setAttribute('type', 'checkbox');
-    input.classList.add('task__checkbox');
+    const input = document.createElement("input");
+    input.setAttribute("type", "checkbox");
+    input.classList.add("task__checkbox");
     if (status) {
-      input.setAttribute('checked', '');
+      input.setAttribute("checked", "");
     }
-    input.addEventListener('change', (event) => this.onCheckbox(event));
-    label.append(span);
+    input.addEventListener("change", (event) => this.onCheckbox(event));
     label.append(input);
+
+    const span = document.createElement("span");
+    span.textContent = value;
+    label.append(span);
+
     return div;
   }
 
   errorTask() {
     // Выдает ошибку о пустом поле
-    const div = document.createElement('div');
-    div.classList.add('error');
-    div.textContent = 'The field is empty!';
+    const div = document.createElement("div");
+    div.classList.add("error");
+    div.textContent = "The field is empty!";
     this.form.append(div);
   }
 
-  drowTasks(array) {
+  drawTasks(array) {
     // Отрисовывает список задач в поле All Task
-    this.divAllTask.innerHTML = '';
+    this.divAllTask.innerHTML = "";
     if (array.length === 0) {
-      this.divAllTask.textContent = 'No tasks found';
+      this.divAllTask.textContent = "No tasks found";
     } else {
       array.forEach((item) => this.divAllTask.append(item));
     }
   }
 
-  drowPinned(array) {
+  drawPinned(array) {
     // Отрисовывает список задач в поле Pinned
-    this.divTaskPinned.innerHTML = '';
+    this.divTaskPinned.innerHTML = "";
     if (array.length === 0) {
-      this.divTaskPinned.textContent = 'No pinned tasks';
+      this.divTaskPinned.textContent = "No pinned tasks";
     } else {
       array.forEach((item) => this.divTaskPinned.append(item));
     }

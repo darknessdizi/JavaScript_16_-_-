@@ -28,7 +28,7 @@ export default class GameController {
   onCellClick(index) {
     // Callback для события 'click' в поле игры
     const hasMole = this.game.cells[index].classList.value;
-    if ((hasMole.includes('hole_has-mole')) && (this.gameState.statusClick)) {
+    if (hasMole.includes("hole_has-mole") && this.gameState.statusClick) {
       this.gameState.statusClick = false;
       this.step -= 10;
       clearInterval(this.gameState.timer);
@@ -46,7 +46,7 @@ export default class GameController {
 
   onResetClick() {
     // Нажали кнопку reset (перезапуск игры)
-    this.game.popup.classList.remove('popup-active');
+    this.game.popup.classList.remove("popup-active");
     this.gameState = new GameState();
     this.nextStep();
   }
@@ -54,8 +54,8 @@ export default class GameController {
   onReturnClick() {
     // Нажали кнопку return (возврат в главное меню)
     clearInterval(this.gameState.timer);
-    const body = document.querySelector('body');
-    body.innerHTML = '';
+    const body = document.querySelector("body");
+    body.innerHTML = "";
     const main = createLinks();
     body.append(main);
   }
@@ -63,8 +63,8 @@ export default class GameController {
   runInterval() {
     // Запуск интервала для непрерывных ходов unit
     this.gameState.timer = setInterval(() => {
-      this.gameState.count += 1
-      console.log('Следующий гоблин', this.gameState.count);
+      this.gameState.count += 1;
+      // console.log("Следующий гоблин", this.gameState.count);
       this.gameState.hole.classList.remove("hole_has-mole");
       this.nextIndex(this.game.cells);
       this.gameState.hole = this.game.cells[this.gameState.index];
@@ -87,7 +87,7 @@ export default class GameController {
 
   gameOver() {
     this.gameState.hole.classList.remove("hole_has-mole");
-    this.game.popup.classList.add('popup-active');
+    this.game.popup.classList.add("popup-active");
     this.game.spanResult.textContent = `Ваш результат: ${this.gameState.score}`;
     this.step = 1000;
   }
