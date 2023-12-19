@@ -121,6 +121,7 @@ export default class WindowEdit {
     div.classList.add("task");
 
     const label = document.createElement("label");
+    label.classList.add("label__task");
     div.append(label);
 
     const input = document.createElement("input");

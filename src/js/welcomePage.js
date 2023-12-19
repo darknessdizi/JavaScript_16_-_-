@@ -2,6 +2,9 @@ import GamePlay from "./firstTask/GamePlay";
 import GameController from "./firstTask/GameController";
 import WindowEdit from "./secondTask/WindowEdit";
 import WindowController from "./secondTask/WindowController";
+import {default as WinEdit} from "./thirdTask/WindowEdit";
+import {default as WinController} from "./thirdTask/WindowController";
+
 
 export default function createLinks() {
   const main = document.createElement("main");
@@ -37,4 +40,7 @@ function runTask2() {
 
 function runTask3() {
   body.innerHTML = "";
+  const edit = new WinEdit();
+  const controller = new WinController(edit);
+  controller.init();
 }
