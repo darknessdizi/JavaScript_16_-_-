@@ -28,7 +28,7 @@ export default class GameController {
   onCellClick(index) {
     // Callback для события "click" в поле игры
     const hasMole = this.game.cells[index].classList.value;
-    if (hasMole.includes("hole_has-mole") && this.gameState.statusClick) {
+    if (hasMole.includes("hole__has_mole") && this.gameState.statusClick) {
       this.gameState.statusClick = false;
       this.step -= 10;
       clearInterval(this.gameState.timer);
@@ -37,7 +37,7 @@ export default class GameController {
       setTimeout(() => {
         this.gameState.statusClick = true;
         this.game.removeStrike(this.gameState.hole);
-        this.gameState.hole.classList.remove("hole_has-mole");
+        this.gameState.hole.classList.remove("hole__has_mole");
 
         this.nextStep();
       }, 500);
@@ -46,7 +46,7 @@ export default class GameController {
 
   onResetClick() {
     // Нажали кнопку reset (перезапуск игры)
-    this.game.popup.classList.remove("popup-active");
+    this.game.popup.classList.remove("popup_active");
     this.gameState = new GameState();
     this.nextStep();
   }
@@ -65,10 +65,10 @@ export default class GameController {
     this.gameState.timer = setInterval(() => {
       this.gameState.count += 1;
       console.log("Следующий гоблин", this.gameState.count);
-      this.gameState.hole.classList.remove("hole_has-mole");
+      this.gameState.hole.classList.remove("hole__has_mole");
       this.nextIndex(this.game.cells);
       this.gameState.hole = this.game.cells[this.gameState.index];
-      this.gameState.hole.classList.add("hole_has-mole");
+      this.gameState.hole.classList.add("hole__has_mole");
       if (this.gameState.count > 4) {
         clearInterval(this.gameState.timer);
         this.gameOver();
@@ -80,14 +80,14 @@ export default class GameController {
     // Первоначальный запуск цепочки ходов unit
     this.nextIndex(this.game.cells);
     this.gameState.hole = this.game.cells[this.gameState.index];
-    this.gameState.hole.classList.add("hole_has-mole");
+    this.gameState.hole.classList.add("hole__has_mole");
 
     this.runInterval();
   }
 
   gameOver() {
-    this.gameState.hole.classList.remove("hole_has-mole");
-    this.game.popup.classList.add("popup-active");
+    this.gameState.hole.classList.remove("hole__has_mole");
+    this.game.popup.classList.add("popup_active");
     this.game.spanResult.textContent = `Ваш результат: ${this.gameState.score}`;
     this.step = 1000;
   }

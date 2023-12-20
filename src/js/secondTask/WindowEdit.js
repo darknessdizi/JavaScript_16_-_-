@@ -16,7 +16,7 @@ export default class WindowEdit {
     const main = document.createElement("main");
     main.classList.add("content");
     const mainDiv = document.createElement("div");
-    mainDiv.classList.add("content-window");
+    mainDiv.classList.add("content__window");
     main.append(mainDiv);
 
     const titleTask = document.createElement("h3");
@@ -59,7 +59,7 @@ export default class WindowEdit {
     // Создаем кнопку возврата на главную страницу
     const btn = document.createElement("button");
     btn.textContent = "Return";
-    btn.classList.add("btn-return");
+    btn.classList.add("btn__return");
     mainBlock.append(btn);
     btn.addEventListener("click", (event) => this.onReturnClick(event));
   }
@@ -134,6 +134,7 @@ export default class WindowEdit {
     label.append(input);
 
     const span = document.createElement("span");
+    span.classList.add("span__text");
     span.textContent = value;
     label.append(span);
 

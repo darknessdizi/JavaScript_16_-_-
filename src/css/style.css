@@ -1,11 +1,12 @@
 /* ------------ Общие параметры: ------------ */
 body {
   margin: 0;
-  padding: 10px;
+  padding: 0;
   background-color: #f6f8f9;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
-a {
+.link__task {
   font-size: 2em;
   text-decoration: none;
   line-height: 4em;
@@ -14,27 +15,23 @@ a {
   background-color: aquamarine;
 }
 
-a:nth-child(1n + 2) {
+.link__task:nth-child(1n + 2) {
   margin-top: 15px;
 }
 
-a:hover {
+.link__task:hover {
   background-color:chartreuse;
 }
 
 .content {
-  position: absolute;
-  left: 0;
-  top: 0;
-  right: 0;
-  bottom: 0;
+  margin-top: 5%;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
 }
 
-.btn-return {
+.btn__return {
   margin-top: 2em;
   font-size: 2em;
   padding: 15px;
@@ -51,7 +48,7 @@ button:hover {
   --cell-size: 120px;
 }
 
-.hole-game {
+.hole_game {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-column-gap: 2px;
@@ -65,17 +62,17 @@ button:hover {
   border-radius: 50%;
 }
 
-.hole_has-mole {
+.hole__has_mole {
   background-image: url('../img/goblin.png');
   background-position: center center;
   background-repeat: no-repeat;
   background-size: contain;
   background-color: gray;
-  cursor: url('../img/1.png') 15 15, pointer;
+  cursor: url('../img/hammer.png') 15 15, pointer;
 }
 
 .strike {
-  background-image: url('../img/5-4.png');
+  background-image: url('../img/stars.png');
   background-position: center center;
   background-repeat: no-repeat;
   background-size: contain;
@@ -95,11 +92,11 @@ button:hover {
   justify-content: center;
 }
 
-.popup-active {
+.popup_active {
   display: flex;
 }
 
-.popup-form {
+.popup_form {
   background-color: lightgreen;
   text-align: center;
   font-size: 40px;
@@ -110,7 +107,7 @@ button:hover {
   padding: 50px;
 }
 
-.btn-reset {
+.btn_reset {
   font-size: 1em;
   background-color: rgb(222, 245, 118);
   border-radius: 50%;
@@ -118,7 +115,7 @@ button:hover {
 }
 
 /* ------------ CSS для задачи 2: ------------ */
-.content-window {
+.content__window {
   background-color: rgb(59 250 239);
   min-width: 300px;
   max-width: 400px;
@@ -153,7 +150,7 @@ button:hover {
   position: relative;
 }
 
-span::after {
+.span__text::after {
   content: '';
   position: absolute;
   width: 30px;
@@ -178,13 +175,13 @@ span::after {
   width: 1px;
 }
 
-span {
+.span__text {
   padding: 10px 40px 10px 15px;
   overflow-wrap: anywhere;
 }
 
 /* ------------ CSS для задачи 3: ------------ */
-.content-conteiner {
+.conteiner {
   text-align: center;
 }
 
@@ -198,10 +195,17 @@ span {
   display: inline-block;
 }
 
-.conteiner-label {
+.conteiner__label {
   display: flex;
   margin-bottom: 10px;
   text-align: center;
+}
+
+.conteiner__error {
+  text-align: right;
+  font-size: 1em;
+  color: red;
+  height: 2em;
 }
 
 .label__title {
@@ -210,22 +214,54 @@ span {
   display: inline-block;
 }
 
-.conteiner__imgs {
-  background-color: rgb(229, 255, 0);
-  width: 90vw;
-  height: 1em;
-  margin-top: 30px;
-  margin-left: 20px;
-  margin-right: 20px;
-  display: flex;
-  justify-content: flex-start;
-}
-
-.btn-add {
+.btn__add {
   margin-left: auto;
   margin-right: auto;
   display: block;
   margin-top: 20px;
   padding: 5px 10px;
   border-radius: 20px;
+}
+
+.conteiner__images {
+  width: 90vw;
+  margin-top: 30px;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+}
+
+.image__conteiner {
+  position: relative;
+  width: 200px;
+  margin-right: 20px;
+  margin-bottom: 20px;
+}
+
+.image {
+  max-width: 100%;
+  height: auto;
+  border: 2px solid black;
+  background-color: aquamarine;
+}
+
+.image__delete {
+  width: 30px;
+  height: 30px;
+  background-color: white;
+  border-radius: 50%;
+  border: 2px solid black;
+  position: absolute;
+  right: -15px;
+  top: -15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.image__delete:hover {
+  background-color: aqua;
 }

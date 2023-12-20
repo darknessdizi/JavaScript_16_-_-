@@ -2,9 +2,8 @@ import GamePlay from "./firstTask/GamePlay";
 import GameController from "./firstTask/GameController";
 import WindowEdit from "./secondTask/WindowEdit";
 import WindowController from "./secondTask/WindowController";
-import {default as WinEdit} from "./thirdTask/WindowEdit";
-import {default as WinController} from "./thirdTask/WindowController";
-
+import { default as WinEdit } from "./thirdTask/WindowEdit";
+import { default as WinController } from "./thirdTask/WindowController";
 
 export default function createLinks() {
   const main = document.createElement("main");
@@ -13,6 +12,7 @@ export default function createLinks() {
 
   for (let i = 0; i < 3; i += 1) {
     const link = document.createElement("a");
+    link.classList.add("link__task");
     link.textContent = `Задача ${i + 1}`;
     main.append(link);
     link.addEventListener("click", listTask[i]);

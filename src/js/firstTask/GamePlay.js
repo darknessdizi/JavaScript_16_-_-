@@ -15,7 +15,7 @@ export default class GamePlay {
     const main = document.createElement("main");
     main.classList.add("content");
     const mainDiv = document.createElement("div");
-    mainDiv.classList.add("hole-game");
+    mainDiv.classList.add("hole_game");
     main.append(mainDiv);
 
     for (let i = 0; i < this.boardsize; i += 1) {
@@ -35,7 +35,7 @@ export default class GamePlay {
     // Создаем кнопку возврата на главную страницу
     const btn = document.createElement("button");
     btn.textContent = "Return";
-    btn.classList.add("btn-return");
+    btn.classList.add("btn__return");
     mainBlock.append(btn);
     btn.addEventListener("click", (event) => this.onReturnClick(event));
   }
@@ -99,14 +99,14 @@ export default class GamePlay {
     this.popup = document.createElement("div");
     this.popup.classList.add("popup");
     const div = document.createElement("div");
-    div.classList.add("popup-form");
+    div.classList.add("popup_form");
     div.textContent = "Конец игры";
     const span = document.createElement("span");
     this.spanResult = span;
     div.append(span);
     const btn = document.createElement("button");
     btn.textContent = "Reset";
-    btn.classList.add("btn-reset");
+    btn.classList.add("btn_reset");
     div.append(btn);
 
     btn.addEventListener("click", (event) => this.onResetClick(event));
